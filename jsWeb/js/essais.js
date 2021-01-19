@@ -27,8 +27,28 @@ function Personne(prenom , nom){
     }
 }
 
-
 function mesEssais(){
+    //v3 (à faire en Tp)
+
+    //construire , remplir et afficher un tableau associatif
+    //entre couleurs anglaises et francaises ( green - vert , red - rouge, ...)
+
+    //construire et remplir un tableau de valeurs numeriques
+    //puis - calculer et afficher la moyenne
+    //     - inverser l'ordre des éléments (premier , dernier , ...)
+
+    //construire une classe de Produit permettant d'écrire
+    //p1 = new Produit('refP1' , 'grand cahier' , 3.5); où 3.5 est le prix
+
+    //constuire en remplir un tableau de produits (avec 3 ou 4 produits)
+    //puis : 
+    //     - calculer la somme des prix des produits
+    //     - afficher que les produits dont le prix est < 20
+
+    //+ autres essais libres
+}
+
+function mesEssais_v2(){
    var p1 = new Personne("alain" , "Therieur");
    p1.age=25;
    p1.adresse = new Adresse("12 rue Elle",75001 , "Paris");
