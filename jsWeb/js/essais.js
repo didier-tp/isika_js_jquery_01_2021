@@ -6,10 +6,17 @@ var refF2 = function (){
     addMessage("f2");
 }
 
+function Adresse(rue,cp,ville){
+    this.rue=rue;
+    this.cp=cp;
+    this.ville=ville;
+}
+
 function Personne(prenom , nom){
     this.prenom = prenom;
     this.nom = nom;
     this.age = 0; //undefined;
+    this.adresse = new Adresse();
     this.incrementerAge = function (){
         this.age++;
     }
@@ -22,6 +29,7 @@ function Personne(prenom , nom){
 function mesEssais(){
    var p1 = new Personne("alain" , "Therieur");
    p1.age=25;
+   p1.adresse = new Adresse("12 rue Elle",75001 , "Paris");
    p1.incrementerAge();
    addMessage("p1.age=" + p1.age);
    addMessage("p1.toString()=" + p1.toString());
@@ -37,6 +45,28 @@ function mesEssais(){
 
    var p2 = new Personne();
    addMessage("p2.nom=" + p2.nom);
+   addMessage("typeof p2:" + typeof p2);
+   if( p2 instanceof Personne)
+      addMessage("p2 est de type Personne");
+    else addMessage("p2 n'est pas de type Personne");
+
+   // objet literal javascript (proche de JSON mais sans les "" sur les propriétés)
+   var p3 = {
+       prenom : "didier",      
+       nom : "Defrance",       
+       age : 51
+   }
+   addMessage("typeof p3:" + typeof p3);
+   if( p3 instanceof Personne)
+      addMessage("p3 est de type Personne");
+    else addMessage("p3 n'est pas de type Personne");
+
+    var p3AsPersonne = Object.assign(new Personne(),p3);
+    if( p3AsPersonne instanceof Personne)
+       addMessage("p3AsPersonne est de type Personne");
+    p3AsPersonne.incrementerAge();
+    addMessage(p3AsPersonne.toString());
+    
 }
 
 function mesEssais_v1(){
