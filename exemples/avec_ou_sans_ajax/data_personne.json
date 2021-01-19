@@ -1,0 +1,9 @@
+{
+"prenom" : "jean",
+"nom" : "Bon",
+"adresse": {
+			"rue" : "12 rue xyz",
+			"codePostal" : "75002",
+			"ville" : "ici Paris"
+           }
+}

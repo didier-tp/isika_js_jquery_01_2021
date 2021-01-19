@@ -1,0 +1,9 @@
+h1 { color : red; }
+#a , #b { font-weight : bold ; }
+.enEvidence { font-style : italic; }
+
+#divA{
+	border-style : solid; border-color: red;
+	background : lightgrey;
+	color : blue;
+}

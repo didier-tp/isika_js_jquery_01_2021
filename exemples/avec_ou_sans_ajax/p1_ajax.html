@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>calculatrice</title>
+	<meta charset="UTF-8">
+	<script src="./lib/jquery-3.5.1.js" ></script>
+	<script>
+	$(function(){
+	
+	  $('#idBtn').on("click",function(){
+	  
+	      $.ajax({
+			type: "GET",
+			url: "./data_personne.json",
+			contentType : "application/json",
+			success: function (data,status,xhr) {
+				if (data) {
+				    console.log("data=" + JSON.stringify(data));
+					var persJs = data;
+					$('#idRue').html(persJs.adresse.rue);
+					$('#idCodePostal').html(persJs.adresse.codePostal);
+					$('#idVille').html(persJs.adresse.ville);
+					}
+				},
+			error: function( jqXHR, textStatus, errorThrown ){
+				console.log("error" + textStatus);
+			}
+		});//end $.ajax
+	  });
+	
+	});
+	</script>
+	<link rel="stylesheet" href="./css/styles.css" type="text/css" > 
+</head>
+<body>
+   
+   <h1>page1 avec ajax</h1>
+   
+    prenom: <input id="idPrenom" type="text" value="jean" /> <br/>
+    nom: <input  id="idNom" type="text" value="Bon" /> <br/>
+    <input id="idBtn" value="recuperer adresse" type="button" />
+	<hr/>
+	Cette personne habite à l'adresse suivante: <br/>
+    <span id="idRue"></span> <br/>
+    <span id="idCodePostal"></span> <span id="idVille"></span>   
+  
+</body>
+</html>
