@@ -27,25 +27,98 @@ function Personne(prenom , nom){
     }
 }
 
+function moyenne(tableau){
+    var n = tableau.length;
+    var somme =0;
+    for(let i in tableau){
+      somme += tableau[i];
+    }
+    return somme/n;
+}
+
+function inverserTab(tableau){
+    var n = tableau.length;
+    var tabInv = new Array(); //ou bien []
+    for(let i = n-1; i >=0; i--){
+        tabInv.push(tableau[i]);
+    }
+    return tabInv;
+}
+
+function Produit(reference , label, prixHt){
+    this.reference = reference;
+    this.label = label;
+    this.prixHt = prixHt; 
+    this.tauxTva = 20; //20% par defaut
+    this.prixTtc = function (){
+        return this.prixHt * (1 + this.tauxTva/100);
+    }
+    this.toString= function (){
+        return JSON.stringify(this);
+    }
+}
+
+
 function mesEssais(){
     //v3 (à faire en Tp)
 
     //construire , remplir et afficher un tableau associatif
     //entre couleurs anglaises et francaises ( green - vert , red - rouge, ...)
+    var tabColors = [];
+    tabColors['green']="vert";
+    tabColors['red']="rouge";
+    tabColors['blue']="bleu";
+    tabColors['yellow']="jaune";
+    tabColors['white']="blanc";
+    tabColors['black']="noir";
+    for(let key in tabColors){
+        addMessage(key + " - " + tabColors[key]);
+    }
 
     //construire et remplir un tableau de valeurs numeriques
     //puis - calculer et afficher la moyenne
     //     - inverser l'ordre des éléments (premier , dernier , ...)
+    var tabVal = [ 23 , 45 , 67 , 4 , 6 , 89 , 6];
+    tabVal.push(83); tabVal.push(37);
+    var m = moyenne(tabVal);
+    addMessage("moyenne =" + m);
+    var tabValInverse = inverserTab(tabVal);
+    addMessage("tabValInverse =" + tabValInverse);
 
     //construire une classe de Produit permettant d'écrire
     //p1 = new Produit('refP1' , 'grand cahier' , 3.5); où 3.5 est le prix
+    p1 = new Produit('refP1' , 'grand cahier' , 3.5); 
+    addMessage("Produit p1=" + p1.toString());
+    addMessage("prix ttc de p1=" + p1.prixTtc());
+
 
     //constuire en remplir un tableau de produits (avec 3 ou 4 produits)
     //puis : 
     //     - calculer la somme des prix des produits
     //     - afficher que les produits dont le prix est < 20
-
+    var tabProduits = []
+    tabProduits.push(p1);
+    tabProduits.push(new Produit('refP2' , 'clef USB 256Go' , 23.5));
+    tabProduits.push(new Produit('refP3' , 'stylo bille' , 1.25));
+    tabProduits.push(new Produit('refP4' , 'imprimante jet encre' , 263.59));
+    var sommePrix = 0;
+    for(let i in tabProduits){
+        sommePrix += tabProduits[i].prixTtc();  //ou bien.prixHt;
+    }
+    addMessage("somme des prix ttc des produits=" + sommePrix);
+    addMessage(">>liste des produits de prix < à 20 :" );
+    for(let i in tabProduits){
+        if(tabProduits[i].prixHt < 20)
+           addMessage(">> " + tabProduits[i]);
+    }
     //+ autres essais libres
+    //retrier selon prix croissants
+    tabProduits.sort((p1,p2)=>p1.prixHt - p2.prixHt);
+    addMessage("** liste des produits par  prix croissants" );
+    for(let i in tabProduits){
+           addMessage("** " + tabProduits[i]);
+    }
+
 }
 
 function mesEssais_v2(){
