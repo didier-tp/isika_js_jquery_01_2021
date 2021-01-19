@@ -13,6 +13,9 @@ function Personne(prenom , nom){
     this.incrementerAge = function (){
         this.age++;
     }
+    this.toString= function (){
+        return JSON.stringify(this);
+    }
 }
 
 
@@ -20,7 +23,20 @@ function mesEssais(){
    var p1 = new Personne("alain" , "Therieur");
    p1.age=25;
    p1.incrementerAge();
-   addMessage("age=" + p1.age);
+   addMessage("p1.age=" + p1.age);
+   addMessage("p1.toString()=" + p1.toString());
+
+   var sP1Json = JSON.stringify(p1);
+   addMessage("sP1Json=" + sP1Json);
+
+   localStorage.setItem("p1",sP1Json); //localStorage = objet prédéfini navigateur HTML5
+   //...
+   var copy_sP1Json = localStorage.getItem("p1");
+   var cloneDeP1 = JSON.parse(copy_sP1Json);
+   addMessage("cloneDeP1.nom=" + cloneDeP1.nom);
+
+   var p2 = new Personne();
+   addMessage("p2.nom=" + p2.nom);
 }
 
 function mesEssais_v1(){
