@@ -2,6 +2,8 @@ function f1(){
     addMessage("f1");
 }
 
+var g1="ok";
+
 var refF2 = function (){
     addMessage("f2");
 }
@@ -31,8 +33,13 @@ function mesEssais(){
    p1.age=25;
    p1.adresse = new Adresse("12 rue Elle",75001 , "Paris");
    p1.incrementerAge();
+   p1["incrementerAge"](); //possible mais moins naturel.
    addMessage("p1.age=" + p1.age);
    addMessage("p1.toString()=" + p1.toString());
+
+   p1.couleurYeux = 'vert'; //possible
+
+   addMessage("age de p1=" + p1["age"]);
 
    var sP1Json = JSON.stringify(p1);
    addMessage("sP1Json=" + sP1Json);
@@ -54,7 +61,8 @@ function mesEssais(){
    var p3 = {
        prenom : "didier",      
        nom : "Defrance",       
-       age : 51
+       age : 51,
+       fou : true
    }
    addMessage("typeof p3:" + typeof p3);
    if( p3 instanceof Personne)
@@ -67,6 +75,32 @@ function mesEssais(){
     p3AsPersonne.incrementerAge();
     addMessage(p3AsPersonne.toString());
     
+    var tab1 = [ 23 , 45 , 67.8 ];
+    delete tab1[1]; //remplace 45 par undefined
+    //tab1.splice(1,1); //supprime 1 case à partir de la position 1
+
+    var tab2 = [ "lundi" , "mardi" ]; // = []
+    tab2[2]="mercredi";
+    tab2.push("jeudi");
+
+    for(let i=0; i<tab1.length;i++){
+        addMessage(i + " - " + tab1[i]);
+    }
+    for(let ii in tab1){
+        addMessage(ii + " -- " + tab1[ii]);
+    }
+   
+    for(let j in tab2){
+        addMessage(j + " - " + tab2[j]);
+    }
+
+    var tabAssoc = [];
+    tabAssoc['hiver']="neige";
+    tabAssoc['été']="soleil";
+    for(let key in tabAssoc){
+        addMessage(key + " - " + tabAssoc[key]);
+    }
+
 }
 
 function mesEssais_v1(){
