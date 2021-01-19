@@ -1,0 +1,32 @@
+<html>
+   <head>
+       <title>bases de javascript , v2</title>
+       <script>
+           function maPremiereFonctionJavascript(){
+               /*
+               document.write("texte1 ajouté en fin de page html <br/>")
+               document.write("texte2 ajouté en fin de page html <br/>")
+               console.log("message dans console web du navigateur")
+               alert("message dans boite d'alerte");
+               */
+               var eltDivA = document.getElementById("divA");
+               eltDivA.innerHTML="texte HTML dans zone dont l'id est divA"
+           }
+
+           function f2(){
+            var eltDivB = document.getElementById("divB");
+            eltDivB.innerHTML="affichage dans zone dont l'id est divB";
+           }
+       </script>
+   </head>
+   <body onload="f2()"> 
+        <h2>javascript (les bases) - v2</h2>
+        <hr/>
+        <div id="divA"></div>
+        <hr/>
+        <div id="divB"></div>
+        <script>
+            maPremiereFonctionJavascript(); //appel de fonction
+        </script>
+   </body>
+</html>
