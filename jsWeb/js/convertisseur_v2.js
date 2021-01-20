@@ -16,7 +16,9 @@ function initialisations(){
     eltUlHistorique = document.getElementById("ulHistorique") ;
     razMessage();
 
-    var cbShowHisto = document.getElementById("cbShowHisto");
+    var cbShowHisto = //document.getElementById("cbShowHisto");
+                      document.querySelector("#cbShowHisto");
+                      //equivalent de $("#cbShowHisto") avec jQuery
     cbShowHisto.addEventListener("change" , function(){
         if(cbShowHisto.checked){
           eltUlHistorique.style.display="block";

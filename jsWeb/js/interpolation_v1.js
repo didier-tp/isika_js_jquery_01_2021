@@ -52,7 +52,7 @@ function tracerDroiteAfoisXplusB(a,b){
 }
 
 function initialisations(){
-    
+
     eltCanvas = document.getElementById("myCanvas");
     eltTBody = document.getElementById("tBody");
     eltSpanMsg = document.getElementById("spanMsg");
@@ -62,32 +62,37 @@ function initialisations(){
 
     var eltBtnCalculInterpolation = document.getElementById("btnCalculInterpolation");
     eltBtnCalculInterpolation.addEventListener("click",function(){
-        //interpolation polynomiale simplifiée : régression linéaire (droite des moindres carrés):
+        //interpolation polynomiale simplifiée :
+        //régression linéaire (droite des moindres carrés):
         var moyenneX = moyenne(tabX);
         var moyenneY = moyenne(tabY);
-        
-        var a = covariance(nbPoints,tabX,tabY,moyenneX,moyenneY) / variance(tabX,moyenneX);
+
+        var a = covariance(nbPoints,tabX,tabY,
+                           moyenneX,moyenneY) / variance(tabX,moyenneX);
         var b = moyenneY - a * moyenneX;
         var resInterpolation="y=a*x+b avec a="+a+" et b="+b;
         eltSpanMsg.innerHTML=resInterpolation;
-        
+
         tracerDroiteAfoisXplusB(a,b);
     });
 
-    // code à compléter dans une étape ultérieure:
-    // lorsque l'on click sur la zone du canvas , il faudra:
-    //  - récupérer les coordonnées souris evt.pageX et evt.pageY
-    //  - calculer les coordonnées relatives à la zone canvas
-    //     x = evt.pageX  - eltCanvas.offsetLeft;
-    //     y = evt.pageY - eltCanvas.offsetTop;
-    //  - inverser le sens d'interprétation du y
-    //      (vers le bas en javascript , vers le haut en math)
-    //      y = eltCanvas.height - y; 
-    //  - appeler  addPoint(x,y); pour ajouter et afficher le nouveau point
+    eltCanvas.addEventListener("click",function (evt){
+        console.log("evt.type="+evt.type);
+        console.log("evt.target.id="+evt.target.id);
+        console.log("evt.pageX="+evt.pageX);
+        console.log("par rapport à la page, evt.pageY="+evt.pageY);
+        console.log("par rapport à myCanvas, y="+(evt.pageY - eltCanvas.offsetTop));
+        var x = evt.pageX  - eltCanvas.offsetLeft;
+        var y = evt.pageY - eltCanvas.offsetTop; //au sens informatique 
+                                                 //(y croissant vers le bas)
+        y = eltCanvas.height - y; //au sens mathématique (y croissant vers le haut)
+        addPoint(x,y);
+    });
 
 }
 
-window.onload= initialisations; //equivalent de onlad="initialisations()" sur body coté html
+window.onload= initialisations; //equivalent de onlad="initialisations()" 
+                                //sur body coté html
 
 // *****Quelques fonctions mathématiques (moyenne, variance, covariance) ****
 
@@ -120,6 +125,3 @@ function covariance(n,tableauX , tableauY , moyenneX,moyenneY){
     }
     return somme/n;
 }
-
-
-
