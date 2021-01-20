@@ -20,6 +20,20 @@ import tp.util.JacksonJsonUtil;
  */
 //@WebServlet("/JsonRestProductServlet")
 @WebServlet("/product-api/product")
+
+/*
+ Remarque très importante:
+ =========================
+ un servlet codé avec response.setContentType("application/json");
+ est un technique très rudimentaire (et assez limitée) pour programmer
+ un Web service REST en java.
+ 
+ Sur un vrai projet d'entreprise , il vaut mieux utiliser
+ JAX-RS/jersey ou bien Spring-MVC
+ */
+
+
+
 public class JsonRestProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

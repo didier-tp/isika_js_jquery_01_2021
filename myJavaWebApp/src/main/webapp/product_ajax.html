@@ -1,0 +1,27 @@
+<html>
+   <head>
+       <title>product (crud)</title>
+       <script src="js/my_ajax_util.js" ></script> 
+       <script src="js/product_ajax.js" ></script>     
+   </head>
+   <body> 
+        <h2>Product (crud)</h2>
+        liste produits:<br/>
+        <button id="btnGetViaAjax">get via ajax</button> <br/>
+        <select id="selProduct" size="8">
+           <!-- <option value="1">cahier</option> -->
+        </select> 
+        <hr/>
+        <h3>produit sélectionné:</h3>
+        <label>id:</label> <!-- <span id="spanIdProd"></span> -->
+                           <input type="text" id="txtCode" /> <br/>
+        <label>nom:</label> <input type="text" id="txtNom" /> </br/>
+        <label>prix:</label> <input type="text" id="txtPrix" /> </br/>
+        <label>description:</label> <input type="text" id="txtDescription" /> </br/>
+        <label>categorie:</label> <input type="text" id="txtCategorie" /> </br/>
+        <button id="btnNew">nouveau</button> &nbsp;
+        <button id="btnAdd">ajouter</button> &nbsp;
+        <button id="btnUpdate">modifier</button> &nbsp;
+        <button id="btnDelete">supprimer</button>
+    </body>
+</html>
