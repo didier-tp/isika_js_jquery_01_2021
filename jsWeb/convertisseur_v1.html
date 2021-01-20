@@ -1,0 +1,19 @@
+<html>
+   <head>
+       <title>convertisseur en javascript v1</title>
+       <script src="js/convertisseur_v1.js" ></script>  
+   </head>
+   <body onload="initialisations()"> 
+        <h2>convertisseur javascript (v1)</h2>
+        <h3>conversion d'angle (ex: 360 degrés = 3.14159 radians)</h3>
+        <label>angle en degrés:</label> 
+            <input type="text" id="txtDegres" /> <br/>
+        <label>angle en radians:</label> 
+           <input type="text" id="txtRadians" /> <br/>
+        <button onclick="degresToRadians()">
+            convertir degrés en radians</button> &nbsp;
+        <button onclick="radiansToDegres()">
+            convertir radians en degrés</button> <br/>
+        <span id="spanMessage"></span>
+   </body>
+</html>

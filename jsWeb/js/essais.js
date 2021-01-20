@@ -113,7 +113,7 @@ function mesEssais(){
     }
     //+ autres essais libres
     //retrier selon prix croissants
-    tabProduits.sort((p1,p2)=>p1.prixHt - p2.prixHt);
+    tabProduits.sort( (p1,p2)=>p1.prixHt - p2.prixHt );
     addMessage("## liste des produits par  prix croissants" );
     for(let i in tabProduits){
            addMessage("## " + tabProduits[i]);
