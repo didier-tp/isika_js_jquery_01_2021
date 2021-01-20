@@ -1,5 +1,8 @@
 //variables globales:
 
+var eltSelProduct;
+var eltSpanIdProd;
+
 var tabProduits = [
    { code:1 , nom : "cahier" , prix: 3.5 , 
      description : "grand cahier" , categorie : "papeterie" } ,
@@ -12,5 +15,21 @@ var tabProduits = [
 //...
 
 function initialisations(){
-    //....
+     eltSelProduct = document.querySelector("#selProduct");
+     eltSpanIdProd = document.querySelector("#spanIdProd");
+
+    for(let i in tabProduits){
+      let eltOption = document.createElement("option");
+      eltOption.setAttribute("value",tabProduits[i].code);
+      //eltOption.innerHTML=tabProduits[i].nom;
+      eltOption.innerHTML="[" + tabProduits[i].code + "] " + tabProduits[i].nom;
+      eltSelProduct.appendChild(eltOption);
+    }
+
+    eltSelProduct.addEventListener("change",function (evt){
+        eltSpanIdProd.innerHTML=evt.target.value;
+    });
+
+
 }
+window.onload= initialisations;
