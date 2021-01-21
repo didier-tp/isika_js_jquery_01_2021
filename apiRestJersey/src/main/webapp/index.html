@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="js/my_ajax_util.js"></script>
+<title>index</title>
+</head>
+<body>
+ <h1>apiRestJersey</h1>
+ <hr/>
+  <a href="product_ajax.html">produits (html/js/ajax sans jquery)</a>
+ <hr/>
+ <h4>url de tests pour ws rest</h4>
+ <a href="./my-rest-api/product"> all products (json)</a> <br/>
+ <a href="./my-rest-api/product?categorie=papeterie"> produits de la categorie papeterie (json)</a> <br/>
+ <a href="./my-rest-api/product?maxPrice=650.0"> products  cheaper than 650 (json)</a> <br/>
+ <a href="./my-rest-api/product/2"> product number 2 (json)</a> <br/>
+ <hr/>
+ url suffix (after my-rest-api/product):<input type="text" id="url_suffix" /> (ex: /4 or empty/nothing)<br/>
+ json data (request body):<input type="text" id="req_data" size=96/> <br/>
+ (ex : <pre>{"name":"other product","label":"label_Xy","price":150}
+ or {"name":"existing_prod","label":"new label **","price":66}</pre>)<br/>
+ <select id="verb">
+     <option selected>GET</option>
+     <option>POST</option>
+     <option>PUT</option>
+     <option>DELETE</option>
+ </select> 
+<input type="button" value="send request" id="btnSend"/> <br/>
+message:<span id="spanMsg"></span><br/>
+response:<span id="spanResp"></span><br/>
+<script>
+var eSpanMsg ;
+var eSpanResp ;
+function successCallback(responseText){
+	eSpanMsg.innerHTML="<i>200 OK</i>";
+	eSpanResp.innerHTML="<b>"+responseText+"</b>";
+}
+function errorCallback(xhr){
+	eSpanMsg.innerHTML="<b>" + "error , status="+ xhr.status+"</b>";
+	eSpanResp.innerHTML="";
+}
+window.onload=function(){
+	var eBtnSend = document.querySelector("#btnSend");
+	var eUrl_suffix = document.querySelector("#url_suffix");
+	var eReq_data = document.querySelector("#req_data");
+	var eVerb = document.querySelector("#verb");
+	eSpanMsg = document.querySelector("#spanMsg");
+	eSpanResp = document.querySelector("#spanResp");
+	eBtnSend.addEventListener("click",function(){
+		var wsUrl = "./my-rest-api/product" + eUrl_suffix.value;
+		var verb = eVerb.value;
+		switch(verb){
+		  case "GET": makeAjaxGetRequest(wsUrl,successCallback,errorCallback); break;
+		  case "POST": makeAjaxPostRequest(wsUrl,eReq_data.value,successCallback,errorCallback); break;
+		  case "PUT": makeAjaxPutRequest(wsUrl,eReq_data.value,successCallback,errorCallback); break;
+		  case "DELETE": makeAjaxDeleteRequest(wsUrl,successCallback,errorCallback); break;
+		}
+	})
+}
+</script>
+</body>
+</html>
