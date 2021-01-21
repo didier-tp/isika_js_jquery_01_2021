@@ -37,6 +37,16 @@ function findProductById(idProd){
    return prod;
 }
 
+//fonction qui supprime un produit dans le tableau en mémoire depuis son id:
+function deleteProductById(idProd){
+   for(let i in tabProduits){
+      if(idProd==tabProduits[i].code){
+         //delete tabProduits[i]; break;
+         tabProduits.splice(i,1); break;
+      }
+   }
+}
+
 //fonction qui affiche les valeurs d'un produit
 //dans les différents champs de saisie du formulaire:
 function displayProductInFormFields(prod){
@@ -51,11 +61,33 @@ function displayProductInFormFields(prod){
 //fonction inverse qui réactualise les valeurs d'un produit
 //en fonction des valeurs saisies dans les champs du formulaire:
 function updateProductFromValuesOfFormFields(prod){
-   prod.code = eltTxtCode.value ;
-   prod.nom = eltTxtNom.value;
-   prod.prix = eltTxtPrix.value;
+   let toutOk = true;
+   if(eltTxtCode.value == "" || isNaN(eltTxtCode.value)){
+      toutOk =false;
+      alert("le code doit etre numerique ");
+      eltTxtCode.focus();
+      eltTxtCode.select();
+   }else{ 
+      prod.code = eltTxtCode.value ;
+   }
+   if(eltTxtNom.value == ""){
+      toutOk =false;
+      alert("la valeur du nom ne doit est vide");
+      eltTxtNom.focus();
+   }   else{ 
+      prod.nom = eltTxtNom.value;
+   }
+   if(eltTxtPrix.value == "" || isNaN(eltTxtPrix.value)){
+      toutOk =false;
+      alert("le prix doit etre numerique ");
+      eltTxtPrix.focus();
+      eltTxtPrix.select();
+   }else {
+      prod.prix = eltTxtPrix.value;
+   }
    prod.description = eltTxtDescription.value;
    prod.categorie = eltTxtCategorie.value;
+   return toutOk;
 }
 
 //fonction actualisant les états des boutons et ...
@@ -63,11 +95,13 @@ function manageStates(){
    if(estNouveau){
       document.querySelector("#btnAdd").disabled = false;
       document.querySelector("#btnUpdate").disabled = true;
-      //...
+      document.querySelector("#btnDelete").disabled = true;
+      eltTxtCode.disabled = false;
    }else{
       document.querySelector("#btnAdd").disabled = true;
       document.querySelector("#btnUpdate").disabled = false;
-      //...
+      document.querySelector("#btnDelete").disabled = false;
+      eltTxtCode.disabled = true;
    }
 }
 
@@ -103,22 +137,45 @@ function onNewProduct(evt){
 
 //produit à ajouter (nouveau)
 function onAddProduct(evt){
-   updateProductFromValuesOfFormFields(selectedProd);
-   console.log("onAddProduct() , selectedProd="+JSON.stringify(selectedProd));
-   
+   let saisieCorrecte = updateProductFromValuesOfFormFields(selectedProd);
+   if(saisieCorrecte){
+      console.log("onAddProduct() , selectedProd="+JSON.stringify(selectedProd));
+      //ajout dans le tableau javascript tabProduits (en mémoire):
+      tabProduits.push(selectedProd);
+      //ajout de l'option dans le <select> HTML:
+      addOrUpdateOptionInSelect(selectedProd);
+      //sélection de cette option:
+      eltSelProduct.value=selectedProd.code; 
+      estNouveau=false; //marqué comme enregistré (plus nouveau)
+      manageStates(); //griser/dégriser pour cohérence
+   }
 }
 
 //produit existant (sélectionné) à mettre à jour
 function onUpdateProduct(evt){
-   updateProductFromValuesOfFormFields(selectedProd);
-   console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
-   addOrUpdateOptionInSelect(selectedProd);
-   
+   let saisieCorrecte = updateProductFromValuesOfFormFields(selectedProd);
+   if(saisieCorrecte){
+      console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
+      addOrUpdateOptionInSelect(selectedProd);
+      //....
+  }   
 }
 
 //produit existant (sélectionné) à supprimer
 function onDeleteProduct(evt){
    console.log("onDeleteProduct(), selectedProd="+JSON.stringify(selectedProd))
+   if(selectedProd && !estNouveau){
+      let confirmOk = confirm("confirmez vous la suppression du produit sélectionné ?");
+      if(confirmOk){
+         deleteProductById(selectedProd.code); //supression dans tabProduits
+         console.log("nouvelle taille de tabProduits après suppression:" + tabProduits.length)
+         //suppression de l'option dans le <select> html :
+         let eltOption = eltSelProduct.querySelector("option[value='"+selectedProd.code+"']");
+         eltSelProduct.removeChild(eltOption);
+         //appel de onNewProduct() pour réinitialiser les champs de saisies:
+         onNewProduct();
+      }
+   }
 }
 
 //fonction qui ajoute ou met à jour une option dans la balise <select>
@@ -134,7 +191,7 @@ function addOrUpdateOptionInSelect(prod){
    }
    
    //eltOption.innerHTML=prod.nom;
-   eltOption.innerHTML="[" + prod.code + "] " + prod.nom;
+   eltOption.innerHTML="[" + prod.code + "] " + prod.nom + " ("+ prod.prix + ")";
 }
 
 function initialisations(){
