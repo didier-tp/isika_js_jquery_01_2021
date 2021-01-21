@@ -112,6 +112,8 @@ function onAddProduct(evt){
 function onUpdateProduct(evt){
    updateProductFromValuesOfFormFields(selectedProd);
    console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
+   addOrUpdateOptionInSelect(selectedProd);
+   
 }
 
 //produit existant (sélectionné) à supprimer
@@ -121,11 +123,18 @@ function onDeleteProduct(evt){
 
 //fonction qui ajoute ou met à jour une option dans la balise <select>
 function addOrUpdateOptionInSelect(prod){
-      let eltOption = document.createElement("option");
-      eltOption.setAttribute("value",prod.code);
-      //eltOption.innerHTML=prod.nom;
-      eltOption.innerHTML="[" + prod.code + "] " + prod.nom;
+   let eltOption = null;
+   //recherche option éventuellement déjà existante:
+   eltOption = eltSelProduct.querySelector("option[value='"+prod.code+"']");
+   if(eltOption == null){
+      //création d'une nouvelle option:
+      eltOption = document.createElement("option");
       eltSelProduct.appendChild(eltOption);
+      eltOption.setAttribute("value",prod.code);
+   }
+   
+   //eltOption.innerHTML=prod.nom;
+   eltOption.innerHTML="[" + prod.code + "] " + prod.nom;
 }
 
 function initialisations(){
