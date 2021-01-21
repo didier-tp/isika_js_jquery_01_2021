@@ -1,0 +1,16 @@
+[
+  { 
+  "code" : 1 ,
+  "nom" :  "cahier" , 
+  "prix" : 3.4 , 
+  "description" : "grand cahier"  ,
+  "categorie" : "papeterie"
+  },
+  { 
+  "code" : 2 ,
+  "nom" :  "stylo" , 
+  "prix" : 2.4 , 
+  "description" : "stylo bille bleu" ,
+  "categorie" : "papeterie" 
+  }
+]

@@ -1,0 +1,16 @@
+dans le projet jsWeb , ajouter un sous répertoire "lib"
+et y recopier jquery-3.5.1.js que l'on trouver dans "pour_debut_tp"
+ou bien sur le site officiel de jquery.
+
+En s'inspirant de l'exemple bases_javascript/calculatrice_jq.html
+                       et .../js/calculatrice_jq.js
+
+Coder une nouvelle version "_jq" (avec jquery) du convertisseur.
+Autrement dit:
+* dupliquer convertisseur_v2.html en convertisseur_jq.html
+* dupliquer js/convertisseur_v2.js en js/convertisseur_jq.js
+* ajouter <script src="./lib/jquery-3.5.1.js" ></script> 
+   dans convertisseur_jq.html et ajuster d'autres détails.
+* simplifier le code de js/convertisseur_jq.js
+  en s'appuyant au maximum sur les syntaxes de jquery
+ 

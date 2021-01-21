@@ -1,0 +1,9 @@
+[
+    { 
+	  "code" :5 ,
+      "nom" :  "imprimante xyz" , 
+      "prix" : 156.4 , 
+      "description" : "imprimante jet encre a4"  ,
+      "categorie" : "imprimante"
+      }
+]

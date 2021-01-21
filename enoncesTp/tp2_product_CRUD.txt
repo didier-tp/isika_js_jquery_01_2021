@@ -1,0 +1,3 @@
+coder product.html et js/product.js en différentes versions 
+successives _v1 , _v2 , _v3 avec un comportement CRUD
+(Recherche_via_ajax , Nouveau/Ajouter , Modifier , Supprimer).
