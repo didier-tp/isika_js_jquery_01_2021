@@ -1,5 +1,3 @@
-
-
 En s'inspirant de l'exemple avec_ou_sans_ajax/p1_ajax.html
 coder une recherche de produits en fonction de la categorie:
 
@@ -11,7 +9,8 @@ V1 (sans serveur complexe):
 * coder de a à z le fichier manquant 
   js/produit_selon_categorie_ajax_jq.js
   en s'appuyant sur jquery et $ajax
- 
+* ecrire index.html corportant un lien hypertexte vers produit_selon_categorie_ajax_jq.html
+* effectuer un test en lancant lite-server dans le répertoire jsWeb . 
 
 V2-facultative (avec serveur java "myJavaWebApp")
 * recopier le code html/js de la v1 dans la partie src/main/webapp

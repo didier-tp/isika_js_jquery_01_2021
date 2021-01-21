@@ -14,11 +14,13 @@
 	  <option value="papeterie">papeterie</option>
 	  <option value="ordinateur">ordinateur</option>
 	  <option value="imprimante">imprimante</option>
+	  <option value="inexistante">inexistante</option>
 	</select> <br/>
-    <input id="idBtn" value="recuperer produits selon categorie" 
-	   type="button" />
-	<!-- NB: selon la categorie choisie , on ira chercher via $ajax()
+   
+	<!-- NB: selon la categorie choisie ("change"), on ira chercher via $ajax()
 	    les données du fichier ./data/products_papeterie.json ou autre -->
+	<hr/>
+	<span id="spanMessage"></span>
 	<hr/>
 	Produits de la catégorie sélectionnée: <br/>
     <table border="1" id="tableHtmlProd">
