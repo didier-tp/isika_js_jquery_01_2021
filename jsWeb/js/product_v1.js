@@ -20,7 +20,10 @@ function initialisations(){
 
     for(let i in tabProduits){
       let eltOption = document.createElement("option");
-      eltOption.setAttribute("value",tabProduits[i].code);
+      eltOption.setAttribute("value",tabProduits[i].code);//construit value="1_ou_2"
+     
+      //eltOption.appendChild(document.createTextNode(tabProduits[i].nom));
+
       //eltOption.innerHTML=tabProduits[i].nom;
       eltOption.innerHTML="[" + tabProduits[i].code + "] " + tabProduits[i].nom;
       eltSelProduct.appendChild(eltOption);

@@ -51,23 +51,11 @@ function displayProductInFormFields(prod){
 //fonction inverse qui réactualise les valeurs d'un produit
 //en fonction des valeurs saisies dans les champs du formulaire:
 function updateProductFromValuesOfFormFields(prod){
-   let toutOk = true;
    prod.code = eltTxtCode.value ;
-   if(eltTxtNom.value == ""){
-      toutOk =false;
-      alert("la valeur du nom ne doit est vide");
-      eltTxtNom.focus();
-   }
    prod.nom = eltTxtNom.value;
-   if(isNaN(eltTxtPrix.value)){
-      alert("le prix doit etre numerique ");
-      eltTxtPrix.focus();
-      eltTxtPrix.select();
-   }
    prod.prix = eltTxtPrix.value;
    prod.description = eltTxtDescription.value;
    prod.categorie = eltTxtCategorie.value;
-   return toutOk;
 }
 
 //fonction actualisant les états des boutons et ...
@@ -117,17 +105,15 @@ function onNewProduct(evt){
 function onAddProduct(evt){
    updateProductFromValuesOfFormFields(selectedProd);
    console.log("onAddProduct() , selectedProd="+JSON.stringify(selectedProd));
-   //....
+   
 }
 
 //produit existant (sélectionné) à mettre à jour
 function onUpdateProduct(evt){
-   let saisieCorrecte = updateProductFromValuesOfFormFields(selectedProd);
-   if(saisieCorrecte){
-      console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
-      addOrUpdateOptionInSelect(selectedProd);
-      //....
-  }   
+   updateProductFromValuesOfFormFields(selectedProd);
+   console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
+   addOrUpdateOptionInSelect(selectedProd);
+   
 }
 
 //produit existant (sélectionné) à supprimer
