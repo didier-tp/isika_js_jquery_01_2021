@@ -27,6 +27,7 @@ function initDataSet(){
 }
 */
 
+
 //fonction qui retrouve un produit dans le tableau en mémoire depuis son id:
 function findProductById(idProd){
    let prod=null;
@@ -36,16 +37,6 @@ function findProductById(idProd){
       }
    }
    return prod;
-}
-
-//fonction qui supprime un produit dans le tableau en mémoire depuis son id:
-function deleteProductById(idProd){
-   for(let i in tabProduits){
-      if(idProd==tabProduits[i].code){
-         //delete tabProduits[i]; break;
-         tabProduits.splice(i,1); break;
-      }
-   }
 }
 
 //fonction qui affiche les valeurs d'un produit
@@ -62,33 +53,11 @@ function displayProductInFormFields(prod){
 //fonction inverse qui réactualise les valeurs d'un produit
 //en fonction des valeurs saisies dans les champs du formulaire:
 function updateProductFromValuesOfFormFields(prod){
-   let toutOk = true;
-   if(eltTxtCode.value == "" || isNaN(eltTxtCode.value)){
-      toutOk =false;
-      alert("le code doit etre numerique ");
-      eltTxtCode.focus();
-      eltTxtCode.select();
-   }else{ 
-      prod.code = eltTxtCode.value ;
-   }
-   if(eltTxtNom.value == ""){
-      toutOk =false;
-      alert("la valeur du nom ne doit est vide");
-      eltTxtNom.focus();
-   }   else{ 
-      prod.nom = eltTxtNom.value;
-   }
-   if(eltTxtPrix.value == "" || isNaN(eltTxtPrix.value)){
-      toutOk =false;
-      alert("le prix doit etre numerique ");
-      eltTxtPrix.focus();
-      eltTxtPrix.select();
-   }else {
-      prod.prix = eltTxtPrix.value;
-   }
+   prod.code = eltTxtCode.value ;
+   prod.nom = eltTxtNom.value;
+   prod.prix = eltTxtPrix.value;
    prod.description = eltTxtDescription.value;
    prod.categorie = eltTxtCategorie.value;
-   return toutOk;
 }
 
 //fonction actualisant les états des boutons et ...
@@ -96,13 +65,11 @@ function manageStates(){
    if(estNouveau){
       document.querySelector("#btnAdd").disabled = false;
       document.querySelector("#btnUpdate").disabled = true;
-      document.querySelector("#btnDelete").disabled = true;
-      eltTxtCode.disabled = false;
+      //...
    }else{
       document.querySelector("#btnAdd").disabled = true;
       document.querySelector("#btnUpdate").disabled = false;
-      document.querySelector("#btnDelete").disabled = false;
-      eltTxtCode.disabled = true;
+      //...
    }
 }
 
@@ -116,6 +83,18 @@ function onSelectProduct(evt){
        displayProductInFormFields(selectedProd);
        manageStates();
    }
+}
+
+//récupération du tableau de produit initial via ajax
+function onGetViaAjax(evt){
+	let url="./product-api/product";
+	makeAjaxGetRequest(url,function (jsonData){
+		console.log("jsonData="+jsonData);
+		tabProduits = JSON.parse(jsonData);
+		for(let i in tabProduits){
+           addOrUpdateOptionInSelect(tabProduits[i]);
+        }
+	});
 }
 
 //Nouveau produit à saisir
@@ -138,78 +117,30 @@ function onNewProduct(evt){
 
 //produit à ajouter (nouveau)
 function onAddProduct(evt){
-   let saisieCorrecte = updateProductFromValuesOfFormFields(selectedProd);
-   if(saisieCorrecte){
-      console.log("onAddProduct() , selectedProd="+JSON.stringify(selectedProd));
-      //ajout dans le tableau javascript tabProduits (en mémoire):
-      tabProduits.push(selectedProd);
-      //ajout de l'option dans le <select> HTML:
-      addOrUpdateOptionInSelect(selectedProd);
-      //sélection de cette option:
-      eltSelProduct.value=selectedProd.code; 
-      estNouveau=false; //marqué comme enregistré (plus nouveau)
-      manageStates(); //griser/dégriser pour cohérence
-   }
+   updateProductFromValuesOfFormFields(selectedProd);
+   console.log("onAddProduct() , selectedProd="+JSON.stringify(selectedProd));
+   
 }
 
 //produit existant (sélectionné) à mettre à jour
 function onUpdateProduct(evt){
-   let saisieCorrecte = updateProductFromValuesOfFormFields(selectedProd);
-   if(saisieCorrecte){
-      console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
-      addOrUpdateOptionInSelect(selectedProd);
-      //....
-  }   
+   updateProductFromValuesOfFormFields(selectedProd);
+   console.log("onUpdateProduct() , selectedProd="+JSON.stringify(selectedProd));
 }
 
 //produit existant (sélectionné) à supprimer
 function onDeleteProduct(evt){
    console.log("onDeleteProduct(), selectedProd="+JSON.stringify(selectedProd))
-   if(selectedProd && !estNouveau){
-      let confirmOk = confirm("confirmez vous la suppression du produit sélectionné ?");
-      if(confirmOk){
-         deleteProductById(selectedProd.code); //supression dans tabProduits
-         console.log("nouvelle taille de tabProduits après suppression:" + tabProduits.length)
-         //suppression de l'option dans le <select> html :
-         let eltOption = eltSelProduct.querySelector("option[value='"+selectedProd.code+"']");
-         eltSelProduct.removeChild(eltOption);
-         //appel de onNewProduct() pour réinitialiser les champs de saisies:
-         onNewProduct();
-      }
-   }
 }
 
 //fonction qui ajoute ou met à jour une option dans la balise <select>
 function addOrUpdateOptionInSelect(prod){
-   let eltOption = null;
-   //recherche option éventuellement déjà existante:
-   eltOption = eltSelProduct.querySelector("option[value='"+prod.code+"']");
-   if(eltOption == null){
-      //création d'une nouvelle option:
-      eltOption = document.createElement("option");
-      eltSelProduct.appendChild(eltOption);
+      let eltOption = document.createElement("option");
       eltOption.setAttribute("value",prod.code);
-   }
-   
-   //eltOption.innerHTML=prod.nom;
-   eltOption.innerHTML="[" + prod.code + "] " + prod.nom + " ("+ prod.prix + ")";
+      //eltOption.innerHTML=prod.nom;
+      eltOption.innerHTML="[" + prod.code + "] " + prod.nom;
+      eltSelProduct.appendChild(eltOption);
 }
-
-function callbackProduits(jsonData){
-	//jsonData = texte de la réponse fabriquée et retournée par le serveur
-	tabProduits = JSON.parse(jsonData);
-	for(let i in tabProduits){
-		addOrUpdateOptionInSelect(tabProduits[i]);
-	}
-}
-
-function onGetViaAjax(){
-	//let url ="http://server_xy/.../product"; //quelquefois possible 
-	     //mais avec RESTRICTIONS "CORS"
-    let url ="./product-api/product"; // URL relative (partant du même serveur)
-    makeAjaxGetRequest(url,callbackProduits);
-}
-
 
 function initialisations(){
      eltSelProduct = document.querySelector("#selProduct");
