@@ -1,0 +1,26 @@
+<html>
+   <head>
+       <title>convertisseur avec jquery</title>
+	   <script src="./lib/jquery-3.5.1.js" ></script>
+       <script src="js/convertisseur_jq.js" ></script>  
+   </head>
+   <body> 
+        <h2>convertisseur javascript (avec jquery)</h2>
+        <h3>conversion d'angle (ex: 360 degrés = 3.14159 radians)</h3>
+        <label>angle en degrés:</label> <input type="text" id="txtDegres" /> <br/>
+        <label>angle en radians:</label> <input type="text" id="txtRadians" /> <br/>
+        <button id="btnDegresToRadians">convertir degrés en radians</button> &nbsp;
+        <button id="btnRadiansToDegres">convertir radians en degrés</button> <br/>
+        <span id="spanMessage"></span>
+        <hr/>
+        <input type="checkbox" id="cbShowHisto" checked/> <u>historique des conversions</u>:
+        <ul id="ulHistorique">
+          <!-- 
+            <li>360 degrés = 3.14159 radians</li>
+            <li>0 radians = 0 degrés </li>
+          -->
+        </ul>
+        <hr/>
+        pied de page qui va bien.
+   </body>
+</html>

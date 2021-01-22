@@ -29,5 +29,5 @@ $(function() {
    $('#cbHisto').on("change",function(evt){ 
        var coche = evt.target.checked;
       $('#ulHistorique').css("display",coche?"block":"none");
-   });
+   }); //fin de on -change
 });
