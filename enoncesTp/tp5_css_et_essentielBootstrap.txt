@@ -1,0 +1,40 @@
+dupliquer jsWeb/product_v2_ou_v3.html
+en jsWeb/product_bootstrap.html
+
+A) préversion css (démo formateur)
+B) version sérieuse css/bootstrap:
+     - ajouter des liens entre la page jsWeb/product_bootstrap.html et
+       le fichier css/bootstrap-min.css (à récupérer depuis exemples)
+       le fichier css/styles.css (à construire)
+     
+     - dans la partie body ajouter une sous div avec la classe 
+       "container" ou "container-fluid"
+
+     - au sein de cette div , ajouter des sous-sous div avec les classes "row" , "col.."
+       de manière à ce que les parties "liste produits" et "produit sélectionné"
+       soit affichées cote à cote sur 2 grandes colonnes lorsque l'écran 
+       est suffisamment large.
+
+     - ajouter tout un tas de classes de style ("form-horizontal" , "form-group" 
+       , "form-control" , "row" , "col...")
+       sur la partie "champs de saisies pour le produit sélectionné".
+       Objectif : champs bien alignés , de même tailles
+                  et comportement responsive selon taille fenêtre
+
+----------------
+C) bootstrap + jquery
+
+    - ajouter jquery.3.5.1.js et bootstrap.bundle.min.js
+      à la page jsWeb/product_bootstrap.html .
+
+    - dans le bas de la page html ajouter :
+       - un panneau qui se développe / contracte avec un titre et un contenu 
+         (card de bootstrap)
+
+       - dans le panneau , insérer un paquet d'onglets
+         (ex: "hiver, printemps , été , automne" avec un contenu par saisons
+          de type neige , fleur , soleil , feuille_morte)
+         
+----------------
+D) éventuels autres ajouts libres (mavbar, ...) selon le temps disponible.
+
