@@ -1,3 +1,12 @@
+précision sur $.ajax() :
+
+contentType : type de données éventuellement envoyées vers le serveur
+              (ex: application/json en mode POST ou PUT)
+
+dataType : type de donnees attendu pour la réponse (ex: "xml" ou "json"
+           ou ...) , paramètre facultatif.
+           si réponse "json" (conversion automatique json --> jsObject)
+----------
 En s'inspirant de l'exemple avec_ou_sans_ajax/p1_ajax.html
 coder une recherche de produits en fonction de la categorie:
 
