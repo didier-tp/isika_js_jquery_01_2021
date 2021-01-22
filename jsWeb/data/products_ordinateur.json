@@ -1,0 +1,16 @@
+[
+    { 
+    "code" : 3 ,
+    "nom" :  "pc asus" , 
+    "prix" : 560.4 , 
+    "description" : "portable 15 pouces"  ,
+    "categorie" : "ordinateur"
+    },
+    { 
+	"code" : 4 ,
+    "nom" :  "pc hp" , 
+    "prix" : 648.4 , 
+    "description" : "pc portable 17 pouces" ,
+    "categorie" : "ordinateur" 
+    }
+]

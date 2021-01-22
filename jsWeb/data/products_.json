@@ -1,0 +1,37 @@
+[
+  { 
+  "code" : 1 ,
+  "nom" :  "cahier" , 
+  "prix" : 3.4 , 
+  "description" : "grand cahier"  ,
+  "categorie" : "papeterie"
+  },
+  { 
+  "code" : 2 ,
+  "nom" :  "stylo" , 
+  "prix" : 2.4 , 
+  "description" : "stylo bille bleu" ,
+  "categorie" : "papeterie" 
+  },
+  { 
+    "code" : 3 ,
+    "nom" :  "pc asus" , 
+    "prix" : 560.4 , 
+    "description" : "portable 15 pouces"  ,
+    "categorie" : "ordinateur"
+    },
+    { 
+	"code" : 4 ,
+    "nom" :  "pc hp" , 
+    "prix" : 648.4 , 
+    "description" : "pc portable 17 pouces" ,
+    "categorie" : "ordinateur" 
+    },
+    { 
+	  "code" :5 ,
+      "nom" :  "imprimante xyz" , 
+      "prix" : 156.4 , 
+      "description" : "imprimante jet encre a4"  ,
+      "categorie" : "imprimante"
+      }
+]
