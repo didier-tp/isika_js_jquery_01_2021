@@ -3,6 +3,6 @@
 
 /* affichages & masquages par défaut (au début)
    avant modif par javascript : */
-#part_welcome { display: block; }
+#part_welcome { display: bloc; }
 #part_product { display: none; }
 #part_saison { display: none; } 
