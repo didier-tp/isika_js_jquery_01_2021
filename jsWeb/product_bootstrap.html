@@ -1,0 +1,90 @@
+<html>
+   <head>
+       <title>product (crud)</title>
+       <script src="js/product_v3.js" ></script>  
+       <link rel="stylesheet" href="css/bootstrap.min.css">	   
+       <link rel="stylesheet" href="css/styles.css" />	   
+   </head>
+   <body> 
+      <div class="container-fluid">
+	   <h2>Product (crud) avec bootstrap</h2>
+	    <div class="row">
+		  <div class="col-sm-4">
+		     
+			 <div class="card">
+			   <div class="card-header bg-primary text-white">
+					liste produits
+			   </div>
+               <div class="card-body">
+				<select id="selProduct" size="8" style="width:100%">
+				   <!-- <option value="1">cahier</option> -->
+				</select> 
+		      </div>
+			 </div><!-- end of card -->
+         </div><!-- end of col -->
+		 <div class="col-sm-8">
+		
+       <div class="card">
+			<div class="card-header bg-primary text-white">
+			   produit sélectionné:
+			 </div>
+            <div class="card-body">
+			   <form class="form-horizontal">
+			     <div class="form-group row">
+				    <label class="control-label text-right col-sm-4">id/code:</label> <!-- <span id="spanIdProd"></span> -->
+					<div class="col-sm-8">	
+						<input type="text" id="txtCode" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="control-label text-right col-sm-4">nom:</label>
+					<div class="col-sm-8">
+						<input type="text" id="txtNom" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="control-label text-right col-sm-4">prix:</label>
+					<div class="col-sm-8">
+						<input type="text" id="txtPrix" class="form-control" /> 
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="control-label text-right col-sm-4">description:</label>
+					<div class="col-sm-8">
+						<input type="text" id="txtDescription" class="form-control" /> 
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="control-label text-right col-sm-4">categorie:</label>
+					<div class="col-sm-8">
+						<input type="text" id="txtCategorie" class="form-control" /> 
+					</div>
+				</div>
+				<div class="form-group row">
+					  <div class="col-sm-3">
+					   <button id="btnNew" class="btn btn-secondary form-control" >nouveau</button>
+					  </div>
+					  <div class="col-sm-3">
+						  <button id="btnAdd" class="btn btn-secondary  form-control">ajouter</button> 
+					   </div>
+					   <div class="col-sm-3">
+						   <button id="btnUpdate" class="btn btn-secondary  form-control">modifier</button>
+					   </div>
+					   <div class="col-sm-3">
+						   <button id="btnDelete" class="btn btn-secondary  form-control">supprimer</button>
+					   </div>
+				   </div>
+			  </form>
+				
+		       </div>
+			 </div><!-- end of card -->
+		  </div><!-- end of col -->
+		</div><!-- end of row -->
+		
+		<hr/>
+		
+		
+		
+	   <div><!-- end of container-fluid -->	
+    </body>
+</html>

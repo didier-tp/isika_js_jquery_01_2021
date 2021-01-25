@@ -14,6 +14,7 @@ B) version sérieuse css/bootstrap:
        de manière à ce que les parties "liste produits" et "produit sélectionné"
        soit affichées cote à cote sur 2 grandes colonnes lorsque l'écran 
        est suffisamment large.
+       améliorer le look de chacune des 2 parties avec des "card"
 
      - ajouter tout un tas de classes de style ("form-horizontal" , "form-group" 
        , "form-control" , "row" , "col...")
