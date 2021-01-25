@@ -119,7 +119,7 @@ function onSelectProduct(evt){
 
 //Nouveau produit à saisir
 function onNewProduct(evt){
-  console.log("onNewProduct()")
+  console.log("onNewProduct()");
   selectedProd={
      code : 0,
      nom : "",
