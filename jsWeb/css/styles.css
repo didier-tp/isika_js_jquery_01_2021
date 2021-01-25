@@ -1,1 +1,8 @@
-label { color:blue; width : 80px; display : inline-block;}
+/*label { color:blue; width : 80px; display : inline-block;}*/
+
+
+/* affichages & masquages par défaut (au début)
+   avant modif par javascript : */
+#part_welcome { display: block; }
+#part_product { display: none; }
+#part_saison { display: none; } 
