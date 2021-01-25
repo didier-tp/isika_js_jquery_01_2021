@@ -37,5 +37,5 @@ C) bootstrap + jquery
           de type neige , fleur , soleil , feuille_morte)
          
 ----------------
-D) éventuels autres ajouts libres (mavbar, ...) selon le temps disponible.
+D) éventuels autres ajouts libres (navbar, ...) selon le temps disponible.
 
